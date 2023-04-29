@@ -1,7 +1,7 @@
 # Custom
 .DS_Store
 venv/
-playground.py
+playground*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
