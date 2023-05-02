@@ -71,7 +71,7 @@ brown_ic = wn_ic.ic('ic-brown.dat')
 # reuters_ic = wn.ic(reuters, False, 0.0)
 
 # Set the random seed
-random.seed(11)
+# random.seed(11)
 
 # Constants
 THRESHOLD = 0.3
@@ -122,10 +122,10 @@ for clue_syn in clue_senses:
                     "clue_sense": clue_syn,
                     # "similarity": clue_syn.path_similarity(word_syn),
                     # "similarity": clue_syn.lch_similarity(word_syn),
-                    # "similarity": clue_syn.wup_similarity(word_syn),
+                    "similarity": clue_syn.wup_similarity(word_syn),
                     # "similarity": clue_syn.res_similarity(word_syn, treebank_ic),
                     # "similarity": clue_syn.jcn_similarity(word_syn, reuters_ic),
-                    "similarity": clue_syn.lin_similarity(word_syn, brown_ic),
+                    # "similarity": clue_syn.lin_similarity(word_syn, brown_ic),
                 }
             )
 
@@ -168,7 +168,7 @@ sorted_scores = sorted(scores, key=lambda x: x["similarity"], reverse=True)
 
 # Simplified version of above
 results1 = {}
-for result in sorted_scores[:num_words]:
+for result in sorted_scores:
     if result["word"] not in results1:
         results1[result["word"]] = result["similarity"]
 
@@ -210,7 +210,7 @@ for idx, result in enumerate(results2[:num_words]):
 
 # --------------------------------------------------------------------------- #
 
-# lemma = "spine"
+# lemma = "olympus"
 
 # print(20 * "-")
 # print()
