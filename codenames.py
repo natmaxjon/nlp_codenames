@@ -11,8 +11,10 @@ class Codenames:
     def __init__(self, board, agent):
         self.board = board
         self.agent = agent
-        self.agent.load_words(board.unrevealed_words())
+        self.update_agent()
         self.phase = Phase.CLUE
+        self.game_over = False
+        self.game_over_message = None
 
         # Bonus weighting for unrevealed neutral cards
         self.neutral_weighting = 0.2
@@ -30,7 +32,13 @@ class Codenames:
             self.make_contact(guesses)
             self.board.display_in_terminal()
             self.choose_red_card()
-            self.agent.load_words(self.board.unrevealed_words())
+            self.update_agent()
+    
+    def update_agent(self):
+        """
+        Update the agent's knowledge of the board.
+        """
+        self.agent.load_words(self.board.unrevealed_words())
 
     def receive_clue(self):
         """
@@ -118,7 +126,7 @@ class Codenames:
         for guess in guesses:
             type = self.board.reveal(guess)
 
-            # self.check_win()
+            self.check_win()
 
             if type != CardType.BLUE:
                 break
@@ -178,28 +186,21 @@ class Codenames:
             self.phase = Phase.CLUE
 
     def check_win(self):
-        """
-        Check if the game is over and exit if it is. The game is over if all
-        blue cards are revealed, all red cards are revealed, or the assassin
-        is revealed.
-        """
+
         # Blue team wins
         if self.board.all_type_revealed(CardType.BLUE):
-            self.board.display_in_terminal()
-            print(f"You win! Your final score is {self.score()}")
-            exit(0)
+            self.game_over = True
+            self.game_over_message = f"You win! Your final score is {self.score()}. Play again? (y/n)"
 
         # Red team wins
         if self.board.all_type_revealed(CardType.RED):
-            self.board.display_in_terminal()
-            print("You lose! Red team wins.")
-            exit(0)
+            self.game_over = True
+            self.game_over_message = "You lose! Red team revealed all their cards. Play again? (y/n)"
 
         # Assassin revealed
         if self.board.all_type_revealed(CardType.ASSASSIN):
-            self.board.display_in_terminal()
-            print("You lose! Assassin revealed.")
-            exit(0)
+            self.game_over = True
+            self.game_over_message = "You lose! You contacted the assassin. Play again? (y/n)"
 
     def score(self):
         """

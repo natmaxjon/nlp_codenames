@@ -31,6 +31,14 @@ CARD_COLOURS = {
     CardType.ASSASSIN: (100, 100, 100),
 }
 
+# Input area
+INPUT_FONT_SIZE = 30
+CLUE_INSTRUCTIONS = "Enter a clue and the number of words it applies to:"
+RED_REVEAL_INSTRUCTIONS = "Enter the word of a red card to reveal:"
+INPUT_HEIGHT = (1 / 5) * (HEIGHT - 2 * MARGIN)
+INSTRUCTION_Y_POS = HEIGHT - MARGIN - (2/3) * INPUT_HEIGHT
+INPUT_Y_POS = HEIGHT - MARGIN - (1/3) * INPUT_HEIGHT
+
 # Other colours
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -63,11 +71,30 @@ clock = pygame.time.Clock()
 
 # --------------------------------------------------------------------------- #
 
+def reset_game(game):
+    """
+    Reset the game to the initial state.
+    """
+    # Randomly sample 25 words
+    words = random.sample(game_words, 25)
+
+    # Initialize the game elements
+    board = Board(words)
+    game.board = board
+    game.update_agent()
+    game.phase = Phase.CLUE
+    game.game_over = False
+    game.game_over_message = None
+    
+
+# --------------------------------------------------------------------------- #
+
 
 def draw_window(user_text):
     WINDOW.fill(BACKGROUND_COLOUR)
     draw_board()
-    draw_text(WINDOW, user_text, 30, WIDTH / 2, HEIGHT - 50)
+    draw_input_area(user_text)
+
     pygame.display.update()
 
 
@@ -101,6 +128,22 @@ def draw_board():
         left = MARGIN
         top += CARD_HEIGHT + CARD_SPACING
 
+def draw_input_area(user_text):
+    # Draw the instructions
+    if game.game_over:
+        instruction = game.game_over_message
+    elif game.phase == Phase.CLUE:
+        instruction = CLUE_INSTRUCTIONS
+    elif game.phase == Phase.RED_REVEAL:
+        instruction = RED_REVEAL_INSTRUCTIONS
+
+    draw_text(WINDOW, instruction, INPUT_FONT_SIZE, WIDTH / 2, INSTRUCTION_Y_POS)
+
+
+    # Draw the user text
+    draw_text(WINDOW, user_text + "|", INPUT_FONT_SIZE, WIDTH / 2, INPUT_Y_POS)
+
+
 
 def draw_text(surf, text, size, x, y):
     """
@@ -118,9 +161,7 @@ def draw_text(surf, text, size, x, y):
     text_rect.center = (x, y)
     surf.blit(text_surface, text_rect)
 
-
 # --------------------------------------------------------------------------- #
-
 
 def handle_input(event, user_text):
     if event.key == pygame.K_BACKSPACE:
@@ -155,13 +196,19 @@ def handle_clue_phase(user_text):
 
     clue, num_words  = split_text[0], int(split_text[1])
     guesses = game.agent.guess(clue, num_words)
-    print(guesses)
+    log_guesses(clue, guesses)
     game.make_contact(guesses)
 
 def handle_red_reveal_phase(user_text):
     user_text = user_text.strip()
     word = user_text.lower()
     game.board.reveal(word)
+    game.check_win()
+    game.update_agent()
+
+def log_guesses(clue, guesses):
+    print(f"Clue: {clue}")
+    print(f"Guesses: {guesses}\n")
 # --------------------------------------------------------------------------- #
 # TODO: TEMP
 
@@ -184,7 +231,17 @@ def main():
                 running = False
 
             if event.type == pygame.KEYDOWN:
-                user_text = handle_input(event, user_text)
+                # Handle game over input
+                if game.game_over:
+                    # TODO: reset the game
+                    if event.key == pygame.K_y:
+                        reset_game(game)
+                        user_text = ""
+                    elif event.key == pygame.K_n:
+                        running = False
+                else:
+                    # Handle game input
+                    user_text = handle_input(event, user_text)
 
         # Update
 
