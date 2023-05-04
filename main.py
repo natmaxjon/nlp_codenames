@@ -1,6 +1,8 @@
 import pygame
 
 import random
+import argparse
+from datetime import datetime
 
 from gameboard import Board, CardType
 from embedding_agent import EmbeddingAgent
@@ -40,6 +42,7 @@ INSTRUCTION_Y_POS = HEIGHT - MARGIN - (2 / 3) * INPUT_HEIGHT
 INPUT_Y_POS = HEIGHT - MARGIN - (1 / 3) * INPUT_HEIGHT
 
 # Other
+LOG_FILENAME = "log.txt"
 BLACK = (0, 0, 0)
 FPS = 20
 
@@ -58,11 +61,35 @@ with open("game_words.txt", "r") as f:
 # Randomly sample 25 words
 words = random.sample(game_words, 25)
 
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "-m",
+    "--model",
+    default="embedding",
+    choices=["embedding", "wordnet"],
+    help="The model to use for the agent",
+)
+args = parser.parse_args()
+
+# Select the agent
+if args.model == "wordnet":
+    agent = WordNetAgent("lexemes_distributions.wnkey.txt")
+elif args.model == "embedding":
+    agent = EmbeddingAgent("en_core_web_lg")
+else:
+    raise ValueError("Invalid model")
+
 # Initialize the game
-# TODO: Add a way to select the agent (command line argument?)
+agent = EmbeddingAgent("en_core_web_lg")
 board = Board(words)
-embedding_agent = EmbeddingAgent("en_core_web_lg")
-game = Codenames(board, embedding_agent)
+game = Codenames(board, agent)
+
+# Create the log text file if it doesn't exist
+with open(LOG_FILENAME, "a") as f:
+    f.write(f"{'-' * 25} NEW GAME {'-' * 25}\n\n")
+    f.write(f"Model: {args.model}\n")
+    f.write(f"Date: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n\n")
 
 # -------------------------------- Functions -------------------------------- #
 
@@ -225,8 +252,10 @@ def handle_clue_phase(user_text):
     # Get the guesses from the agent
     guesses = game.agent.guess(clue, num_words)
 
-    # Log the clue and guesses to the terminal
-    log_guesses(clue, guesses)
+    # Log the clue and guesses
+    log(f"{game.board.get_display_string()}\n\n")
+    log(f"Clue: {clue} {num_words}\n\n")
+    log(f"Guesses: {guesses}\n\n")
 
     #  Apply the guesses to the board
     game.make_contact(guesses)
@@ -241,6 +270,9 @@ def handle_red_reveal_phase(user_text):
     user_text = user_text.strip()
     word = user_text.lower()
 
+    # Log the chosen word
+    log(f"Red reveal: {word}\n\n")
+
     # Reveal the word on the board
     game.board.reveal(word)
 
@@ -249,16 +281,6 @@ def handle_red_reveal_phase(user_text):
 
     # Update the agent's knowledge of the board.
     game.update_agent()
-
-
-def log_guesses(clue, guesses):
-    """
-    Log the clue and guesses to the terminal.
-    :param clue: the clue word given by the user
-    :param guesses: a list of guesses made by the agent
-    """
-    print(f"Clue: {clue}")
-    print(f"Guesses: {guesses}\n")
 
 
 def handle_endgame_input(event):
@@ -271,10 +293,12 @@ def handle_endgame_input(event):
 
     # If the user presses the 'n' key, quit the game
     if event.key == pygame.K_n:
+        log(f"{game.game_over_message}\n\n")
         return False
 
     # If the user presses the 'y' key, reset the game
     if event.key == pygame.K_y:
+        log(f"{game.game_over_message}\n\n")
         reset_game(game)
 
     return True
@@ -294,6 +318,24 @@ def reset_game(game):
     game.phase = Phase.CLUE
     game.game_over = False
     game.game_over_message = None
+
+    # Log start of new game
+    log(f"{'-' * 25} NEW GAME {'-' * 25}\n\n")
+    log(f"Model: {args.model}\n")
+    log(f"Date: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n\n")
+
+
+def log(string):
+    """
+    Print the string to the terminal and write it to the log file.
+    :param string: string to log
+    """
+    # Print the string to the terminal
+    print(string)
+
+    # Write the string to the log file
+    with open(LOG_FILENAME, "a") as f:
+        f.write(string)
 
 
 # -------------------------------- Game Loop -------------------------------- #

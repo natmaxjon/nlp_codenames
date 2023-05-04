@@ -18,6 +18,7 @@ class Board:
     def __init__(self, words):
         assert len(words) == 25
 
+        # Randomly assign card types (9 blue, 8 red, 7 neutral, 1 assassin)
         # Assumes blue team goes first
         types = (
             [CardType.BLUE] * 9
@@ -66,15 +67,14 @@ class Board:
             1 for card in self.cards if card.type == card_type and not card.revealed
         )
 
-    def display_in_terminal(self):
+    def get_display_string(self):
         """
-        Display the board in the terminal.
+        Return a string representation of the board.
         """
-        print()
-        print("BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>")
+        string = "BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>\n"
         for idx, card in enumerate(self.cards):
             if idx % 5 == 0:
-                print()
+                string += "\n"
 
             card_str = "     " if card.revealed else card.word.upper()
 
@@ -87,6 +87,6 @@ class Board:
             elif card.type == CardType.ASSASSIN:
                 card_str = f"<{card_str}>"
 
-            print(f"{card_str: ^12}", end=" ")
+            string += f"{card_str: ^12}"
 
-        print("\n")
+        return string

@@ -1,7 +1,7 @@
 from nltk.corpus import wordnet as wn
 
 class WordNetAgent():
-    def __init__(self, lex_dist_file, threshold=0.1) -> None:
+    def __init__(self, lex_dist_file, threshold=0.1):
         with open(lex_dist_file, "r") as f:
             self.sense_dist_data = f.read().splitlines()
         

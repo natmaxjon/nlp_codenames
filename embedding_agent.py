@@ -1,7 +1,7 @@
 import spacy
 
 class EmbeddingAgent():
-    def __init__(self, spacy_model) -> None:
+    def __init__(self, spacy_model):
         self.model = spacy.load(spacy_model)
         self.word_embeddings = {}
     
