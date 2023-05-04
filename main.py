@@ -48,6 +48,17 @@ FPS = 20
 
 # ---------------------------------- Setup ---------------------------------- #
 
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "-m",
+    "--model",
+    default="embedding",
+    choices=["embedding", "wordnet"],
+    help="The model to use for the agent",
+)
+args = parser.parse_args()
+
 # Initialize the pygame window and clock
 pygame.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -60,17 +71,6 @@ with open("game_words.txt", "r") as f:
 
 # Randomly sample 25 words
 words = random.sample(game_words, 25)
-
-# Parse command line arguments
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "-m",
-    "--model",
-    default="embedding",
-    choices=["embedding", "wordnet"],
-    help="The model to use for the agent",
-)
-args = parser.parse_args()
 
 # Select the agent
 if args.model == "wordnet":
