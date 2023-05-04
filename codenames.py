@@ -1,15 +1,18 @@
 import random
+from enum import Enum
 
 from gameboard import Board, CardType
 from embedding_agent import EmbeddingAgent
 from wordnet_agent import WordNetAgent
 
+Phase = Enum("Phase", ["CLUE", "RED_REVEAL"])
 
 class Codenames:
     def __init__(self, board, agent):
         self.board = board
         self.agent = agent
         self.agent.load_words(board.unrevealed_words())
+        self.phase = Phase.CLUE
 
         # Bonus weighting for unrevealed neutral cards
         self.neutral_weighting = 0.2
@@ -72,6 +75,39 @@ class Codenames:
             break
 
         return (clue, num_words)
+    
+    def valid_clue_input(self, user_text):
+        user_text = user_text.strip()
+        user_text = user_text.lower()
+        split_text = user_text.split()
+
+        # Check if the user entered two words
+        if len(split_text) != 2:
+            return False
+
+        clue = split_text[0]
+        num_words = split_text[1]
+
+        # Check if the clue is a word
+        if not clue.isalpha():
+            return False
+        
+        # Check if the clue is a word on the board
+        if clue in self.board.unrevealed_words():
+            return False
+
+        # Check if the number is an integer
+        try:
+            num_words = int(num_words)
+        except ValueError:
+            return False
+        
+        # Check if the number is positive
+        if num_words <= 0:
+            return False
+    
+        return True
+    
 
     def make_contact(self, guesses):
         """
@@ -82,7 +118,7 @@ class Codenames:
         for guess in guesses:
             type = self.board.reveal(guess)
 
-            self.check_win()
+            # self.check_win()
 
             if type != CardType.BLUE:
                 break
@@ -105,6 +141,41 @@ class Codenames:
             self.board.reveal(word)
             self.check_win()
             break
+
+    def valid_red_reveal_input(self, user_text):
+        """
+        Check if the input is a valid red card to reveal.
+        :param word: word to check
+        :return: True if the word is a valid red card to reveal, False otherwise
+        """
+        user_text = user_text.strip()
+        user_text = user_text.lower()
+
+        # Check if the user entered a single word
+        if len(user_text.split()) != 1:
+            return False
+
+        # Check if the user entered a word
+        if not user_text.isalpha():
+            return False
+        
+        is_red = self.board.card_type(user_text) == CardType.RED
+        is_unrevealed = user_text in self.board.unrevealed_words()
+
+        # Check if the word is a valid red card to reveal
+        if not (is_red and is_unrevealed):
+            return False
+        
+        return True
+
+    def next_phase(self):
+        """
+        Advance to the next phase of the game.
+        """
+        if self.phase == Phase.CLUE:
+            self.phase = Phase.RED_REVEAL
+        elif self.phase == Phase.RED_REVEAL:
+            self.phase = Phase.CLUE
 
     def check_win(self):
         """
