@@ -61,7 +61,7 @@ $ python3 main.py --model <model_choice>
 > Contains the `EmbeddingAgent` class which receives a clue and makes guesses using the cosine similarity of word embeddings.
 
 > **wordnet_agent.py**
-> Contains the `EmbeddingAgent` class which receives a clue and makes guesses using Wu-Palmer Similarity in the WordNet taxonomy.
+> Contains the `WordNetAgent` class which receives a clue and makes guesses using Wu-Palmer Similarity in the WordNet taxonomy.
 
 > **dev.py**
 > Used for testing and debugging the agents.
