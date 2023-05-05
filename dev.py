@@ -1,11 +1,15 @@
 from nltk.corpus import wordnet as wn
 from nltk.corpus import wordnet_ic as wn_ic
-# from nltk.corpus import treebank # treebank, gutenberg, reuters
-
+# from nltk.corpus import reuters # treebank, gutenberg, reuters
 import spacy
 
 import random
 
+from gameboard import Board
+
+# -------------------------------- FUNCTIONS -------------------------------- #
+
+# Helper functions for the WordNet method
 
 def get_lemma_dist(lemma, dist_data):
     """
@@ -55,9 +59,8 @@ def filter_dist(lemma_dist, threshold):
 
 # ---------------------------------- SETUP ---------------------------------- #
 
-# Load the Codenames game words
-with open("game_words.txt", "r") as f:
-    game_words = f.read().splitlines()
+# Set the random seed for reproducibility
+# random.seed(11)
 
 # Load the CluBERT lexemes distributions (see https://github.com/SapienzaNLP/clubert)
 with open("lexemes_distributions.wnkey.txt", "r") as f:
@@ -70,21 +73,23 @@ brown_ic = wn_ic.ic('ic-brown.dat')
 # gutenberg_ic = wn.ic(gutenberg, False, 0.0)
 # reuters_ic = wn.ic(reuters, False, 0.0)
 
-# Set the random seed
-# random.seed(11)
+# Set the threshold for filtering the distribution of word senses (0 to 1)
+THRESHOLD = 0.1
 
-# Constants
-THRESHOLD = 0.3
+# Load the Codenames game words
+with open("game_words.txt", "r") as f:
+    game_words = f.read().splitlines()
 
-# ---------------------------------- SETUP ---------------------------------- #
-
-# Randomly sample 25 words
+# Initialize and print the game board
 words = random.sample(game_words, 25)
+board = Board(words)
+print(f"{board.get_display_string()}\n\n")
 
-# Print the sample as a 5x5 grid
-for i in range(5):
-    print(words[i * 5 : (i + 1) * 5])
-print()
+# ---------------------------------- INPUT ---------------------------------- #
+
+clue = input("Clue: ")
+
+# ----------------------------- WordNet Method ------------------------------ #
 
 # Get the filtered distribution of each word
 word_senses = {}
@@ -96,26 +101,20 @@ for word in words:
     # Add the filtered distribution to the dictionary
     word_senses[word] = filtered_syns
 
-# Receive the clue from the spymaster
-clue = input("Enter the clue: ")
-
-# Receive the number of words the clue applies to
-num_words = int(input("Enter the number of words: "))
-
 # Get the filtered distribution of the clue
 clue_dist = get_lemma_dist(clue, lexeme_dist_data)
 clue_senses = filter_dist(clue_dist, THRESHOLD)
 
 # Find the similarity between all combinations of senses in the clue and the words
-scores = []
+similarity = []
 for clue_syn in clue_senses:
     for word, word_syns in word_senses.items():
         for word_syn in word_syns:
             # Compare only if synsets are from the same POS
-            if clue_syn.pos() != word_syn.pos():
-                continue
+            # if clue_syn.pos() != word_syn.pos():
+            #     continue
 
-            scores.append(
+            similarity.append(
                 {
                     "word": word,
                     "sense": word_syn,
@@ -130,21 +129,20 @@ for clue_syn in clue_senses:
             )
 
 # Sort the similarity scores in descending order
-sorted_scores = sorted(scores, key=lambda x: x["similarity"], reverse=True)
+sorted_similarity = sorted(similarity, key=lambda x: x["similarity"], reverse=True)
 
 # ---- OUTPUT OPTIONS ---- #
 
-# 1.
+# 1. 
 
-# # List before processing
-# print()
-# print("COMPLETE RANKING:")
-# print()
-# for result in sorted_scores:
-#     print(f"Word: {result['word']} ({result['similarity']})")
-#     print(f"Word sense: {result['sense']} - {result['sense'].definition()}")
-#     print(f"Clue sense: {result['clue_sense']} - {result['clue_sense'].definition()}")
-#     print()
+# Print the top 25 similarities (there may be multiple senses for each word)
+print(f"{40 * '-'}\n")
+print("Wordnet Similarity Ranking:\n")
+for result in sorted_similarity[:25]:
+    print(f"Word: {result['word']} ({result['similarity']})")
+    print(f"Word sense: {result['sense']} - {result['sense'].definition()}")
+    print(f"Clue sense: {result['clue_sense']} - {result['clue_sense'].definition()}")
+    print()
 
 # 2.
 
@@ -166,72 +164,43 @@ sorted_scores = sorted(scores, key=lambda x: x["similarity"], reverse=True)
 
 # 3.
 
-# Simplified version of above
-results1 = {}
-for result in sorted_scores:
-    if result["word"] not in results1:
-        results1[result["word"]] = result["similarity"]
+# results1 = {}
+# for result in sorted_scores:
+#     if result["word"] not in results1:
+#         results1[result["word"]] = result["similarity"]
 
-        if len(results1) == num_words:
-            break
+#         if len(results1) == num_words:
+#             break
 
-results1 = sorted(results1.items(), key=lambda x: x[1], reverse=True)
+# results1 = sorted(results1.items(), key=lambda x: x[1], reverse=True)
 
-print()
-print("WordNet Similarity:")
-print()
-for idx, result in enumerate(results1[:num_words]):
-    print(f"{idx + 1}. {result[0]} ({result[1]})")
+# print()
+# print("WordNet Similarity:")
+# print()
+# for idx, result in enumerate(results1[:num_words]):
+#     print(f"{idx + 1}. {result[0]} ({result[1]})")
 
-# --------------------------------------------------------------------------- #
+# ---------------------------- Embedding Method ----------------------------- #
 
-# Repeat but using embeddings
+# Load the spaCy model
 model = spacy.load("en_core_web_lg")
 
+# Get the embeddings for the clue and the words
 words_combined = " ".join(words)
-
 doc_words = model(words_combined)
 doc_clue = model(clue)
 
-results2 = {}
+# Find the similarity between the clue and the words
+similarity = {}
 for token in doc_words:
     sim = doc_clue[0].similarity(token)
-    results2[token.text] = sim
+    similarity[token.text] = sim
 
 # Sort results by similarity
-results2_copy = results2.copy()
-results2 = sorted(results2.items(), key=lambda x: x[1], reverse=True)
+sorted_similarity = sorted(similarity.items(), key=lambda x: x[1], reverse=True)
 
-print()
-print("Embedding Similarity:")
-print()
-for idx, result in enumerate(results2[:num_words]):
+# Display results
+print(f"{40 * '-'}\n")
+print("Embedding Similarity Ranking:\n")
+for idx, result in enumerate(sorted_similarity):
     print(f"{idx + 1}. {result[0]} ({result[1]})")
-
-# --------------------------------------------------------------------------- #
-
-# lemma = "olympus"
-
-# print(20 * "-")
-# print()
-# print("BEFORE FILTERING")
-# for syn in wn.synsets(lemma):
-#     print(f"{syn.name()}: {syn.definition()}")
-
-# lemma_dist = get_lemma_dist(lemma, lexeme_dist_data)
-
-# print()
-# print("DISTRIBUTION")
-# for pos, syn_scores in lemma_dist.items():
-#     print(pos)
-#     for syn, score in syn_scores:
-#         print(f"{syn.name()}: {score} - {syn.definition()}")
-#     print()
-
-# filtered_lemma_dist = filter_dist(lemma_dist, THRESHOLD)
-
-# print()
-# print("AFTER FILTERING")
-# for syn in filtered_lemma_dist:
-#     print(f"{syn.name()}: {syn.definition()}")
-# print()

@@ -1,38 +1,32 @@
 import nltk
 from nltk.corpus import wordnet as wn
 from nltk.corpus import wordnet_ic as wn_ic
-
 import spacy
 
 import random
 
-from gameboard import CardType, Board
+from gameboard import Board
 
+# ---------------------------------- Setup ---------------------------------- #
+
+# Set random seed for reproducibility in testing
 random.seed(11)
 
 # Read the file game_words.txt
 with open("game_words.txt", "r") as f:
     game_words = f.read().splitlines()
 
-# Initialize the game board
+# Initialize and print the game board
 words = random.sample(game_words, 25)
+board = Board(words)
+print(f"{board.get_display_string()}\n\n")
 
-card_types = [CardType.BLUE]*9 + [CardType.RED]*8 + [CardType.NEUTRAL]*7 + [CardType.ASSASSIN]
-random.shuffle(card_types)
+# ---------------------------------- Input ---------------------------------- #
 
-board = Board(words, card_types)
+clue = input("Clue: ")
+num_words = int(input("Number of words: "))
 
-board.display()
-
-# -----------------------------------------------------------------------------
-
-clue = "animal"
-# num_words = 25
-
-print(f"Clue: {clue}\n")
-
-# -----------------------------------------------------------------------------
-
+# ----------------------------- WordNet Method ------------------------------ #
 
 results1 = []
 for word in words:

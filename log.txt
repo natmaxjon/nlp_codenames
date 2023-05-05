@@ -1,0 +1,19 @@
+------------------------- NEW GAME -------------------------
+
+Model: embedding
+Date: 05/05/2023 01:58:26
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+   (TAP)      {BEACH}   [TELESCOPE]  {TEACHER}     {SUB}    
+   (FACE)     [MARCH]     [APPLE]     (ROUND)      [BEAR]   
+  {HONEY}     [AFRICA]    {CHURCH}     <DAY>       [NET]    
+   {SHOE}     {PRESS}     (BOTTLE)    (QUEEN)      (BAND)   
+   [CAP]      [AZTEC]   (PARACHUTE)   (FIGURE)    (CLIFF)   
+
+Clue: night 1
+
+Guesses: ['day']
+
+You lose! You contacted the assassin. Play again? (y/n)
+
