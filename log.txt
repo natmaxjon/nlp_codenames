@@ -1,19 +1,249 @@
 ------------------------- NEW GAME -------------------------
 
-Model: embedding
-Date: 05/05/2023 01:58:26
+Model: wordnet
+Date: 05/05/2023 12:26:13
 
 BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
 
-   (TAP)      {BEACH}   [TELESCOPE]  {TEACHER}     {SUB}    
-   (FACE)     [MARCH]     [APPLE]     (ROUND)      [BEAR]   
-  {HONEY}     [AFRICA]    {CHURCH}     <DAY>       [NET]    
-   {SHOE}     {PRESS}     (BOTTLE)    (QUEEN)      (BAND)   
-   [CAP]      [AZTEC]   (PARACHUTE)   (FIGURE)    (CLIFF)   
+  {NEEDLE}   {JUPITER}     {LUCK}      (BARK)     (SWING)   
+  (CROWN)    (EMBASSY)    [MODEL]     <LIGHT>      (IRON)   
+   [DECK]     {SPACE}      (PAN)       {BANK}     {POUND}   
+  [TURKEY]     [EYE]      [MOUSE]   [WASHINGTON]   (PLAY)   
+  (GHOST)     [CLOAK]     [CROSS]      (SNOW)   {TELESCOPE} 
 
-Clue: night 1
+Clue: royal 2
 
-Guesses: ['day']
+Guesses: ['crown', 'embassy']
+
+Red reveal: cross
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+  {NEEDLE}   {JUPITER}     {LUCK}      (BARK)     (SWING)   
+  (     )     (     )     [MODEL]     <LIGHT>      (IRON)   
+   [DECK]     {SPACE}      (PAN)       {BANK}     {POUND}   
+  [TURKEY]     [EYE]      [MOUSE]   [WASHINGTON]   (PLAY)   
+  (GHOST)     [CLOAK]     [     ]      (SNOW)   {TELESCOPE} 
+
+Clue: metal 2
+
+Guesses: ['iron', 'light']
 
 You lose! You contacted the assassin. Play again? (y/n)
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 12:29:22
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+ (BERMUDA)    (POUND)      {NET}      (POINT)     {TOWER}   
+  [MATCH]     (PIANO)     {IVORY}     [FORCE]   [AMBULANCE] 
+ (DIAMOND)    {PITCH}      (FAN)      (FIELD)    <BATTERY>  
+ [TEACHER]     (OIL)     (PUMPKIN)    {SPRING}    [DRESS]   
+  [GRACE]      [SPOT]     {BRIDGE}     {FOOT}   [PARACHUTE] 
+
+Clue: triangle 2
+
+Guesses: ['diamond', 'point']
+
+Red reveal: match
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+ (BERMUDA)    (POUND)      {NET}      (     )     {TOWER}   
+  [     ]     (PIANO)     {IVORY}     [FORCE]   [AMBULANCE] 
+  (     )     {PITCH}      (FAN)      (FIELD)    <BATTERY>  
+ [TEACHER]     (OIL)     (PUMPKIN)    {SPRING}    [DRESS]   
+  [GRACE]      [SPOT]     {BRIDGE}     {FOOT}   [PARACHUTE] 
+
+Clue: motor 2
+
+Guesses: ['battery', 'ambulance']
+
+You lose! You contacted the assassin. Play again? (y/n)
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 12:32:33
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+  [LONDON]    [SCHOOL]     [PIPE]     <WASHER>     (DAY)    
+  (EAGLE)      (LEAD)     (WATER)      {FACE}      (WIND)   
+  (SPELL)     {TOOTH}   (AUSTRALIA)   {FENCE}     {ROBIN}   
+   [BOND]     [SWING]     [ENGINE]   (PHOENIX)   {SMUGGLER} 
+   [PLOT]     {PITCH}     (GREEN)     [PISTOL]    {GIANT}   
+
+Clue: nature 3
+
+Guesses: ['water', 'fence', 'green']
+
+Red reveal: london
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+  [     ]     [SCHOOL]     [PIPE]     <WASHER>     (DAY)    
+  (EAGLE)      (LEAD)     (     )      {FACE}      (WIND)   
+  (SPELL)     {TOOTH}   (AUSTRALIA)   {     }     {ROBIN}   
+   [BOND]     [SWING]     [ENGINE]   (PHOENIX)   {SMUGGLER} 
+   [PLOT]     {PITCH}     (GREEN)     [PISTOL]    {GIANT}   
+
+Clue: nature 3
+
+Guesses: ['green', 'wind', 'bond']
+
+Red reveal: school
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+  [     ]     [     ]      [PIPE]     <WASHER>     (DAY)    
+  (EAGLE)      (LEAD)     (     )      {FACE}     (     )   
+  (SPELL)     {TOOTH}   (AUSTRALIA)   {     }     {ROBIN}   
+  [     ]     [SWING]     [ENGINE]   (PHOENIX)   {SMUGGLER} 
+   [PLOT]     {PITCH}     (     )     [PISTOL]    {GIANT}   
+
+Clue: hot 3
+
+Guesses: ['washer', 'pipe', 'giant']
+
+You lose! You contacted the assassin. Play again? (y/n)
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 12:34:59
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+ (MAMMOTH)     {TRIP}     [PLANE]     [WHALE]   {PARACHUTE} 
+  (EUROPE)     (FISH)     {THUMB}   [TELESCOPE]    (TIME)   
+   [TICK]   {WASHINGTON}  (WITCH)     [TOWER]    <THEATER>  
+ [KANGAROO]    (GAS)      (CRASH)     [FENCE]      {HEAD}   
+ (CENTAUR)    {MOSCOW}    [TRAIN]     {FIGURE}    (TOOTH)   
+
+Clue: tusk 2
+
+Guesses: ['mammoth', 'whale']
+
+------------------------- NEW GAME -------------------------
+
+Model: embedding
+Date: 05/05/2023 12:37:17
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+   [LAB]     [MAMMOTH]     {SOUL}     {CHICK}     {STATE}   
+   {MINE}     {NEEDLE}    [GHOST]      (KEY)      [AZTEC]   
+ (OLYMPUS)    (FORCE)     [MOSCOW]   {STADIUM}   (DINOSAUR) 
+  [FIELD]      {BARK}     (THIEF)     [COTTON]     (SHOE)   
+[HELICOPTER]  <CRANE>      (HEAD)     (MODEL)     (DEATH)   
+
+Clue: bank 2
+
+Guesses: ['state', 'mine']
+
+Red reveal: mammoth
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+   [LAB]      [     ]      {SOUL}     {CHICK}     {     }   
+   {MINE}     {NEEDLE}    [GHOST]      (KEY)      [AZTEC]   
+ (OLYMPUS)    (FORCE)     [MOSCOW]   {STADIUM}   (DINOSAUR) 
+  [FIELD]      {BARK}     (THIEF)     [COTTON]     (SHOE)   
+[HELICOPTER]  <CRANE>      (HEAD)     (MODEL)     (DEATH)   
+
+Clue: kill 2
+
+Guesses: ['death', 'thief']
+
+Red reveal: cotton
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+   [LAB]      [     ]      {SOUL}     {CHICK}     {     }   
+   {MINE}     {NEEDLE}    [GHOST]      (KEY)      [AZTEC]   
+ (OLYMPUS)    (FORCE)     [MOSCOW]   {STADIUM}   (DINOSAUR) 
+  [FIELD]      {BARK}     (     )     [     ]      (SHOE)   
+[HELICOPTER]  <CRANE>      (HEAD)     (MODEL)     (     )   
+
+Clue: hole 2
+
+Guesses: ['needle', 'head']
+
+Red reveal: field
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+   [LAB]      [     ]      {SOUL}     {CHICK}     {     }   
+   {MINE}     {     }     [GHOST]      (KEY)      [AZTEC]   
+ (OLYMPUS)    (FORCE)     [MOSCOW]   {STADIUM}   (DINOSAUR) 
+  [     ]      {BARK}     (     )     [     ]      (SHOE)   
+[HELICOPTER]  <CRANE>      (HEAD)     (MODEL)     (     )   
+
+Clue: mannequin 3
+
+Guesses: ['model', 'shoe', 'chick']
+
+Red reveal: helicopter
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+   [LAB]      [     ]      {SOUL}     {     }     {     }   
+   {MINE}     {     }     [GHOST]      (KEY)      [AZTEC]   
+ (OLYMPUS)    (FORCE)     [MOSCOW]   {STADIUM}   (DINOSAUR) 
+  [     ]      {BARK}     (     )     [     ]     (     )   
+  [     ]     <CRANE>      (HEAD)     (     )     (     )   
+
+Clue: open 2
+
+Guesses: ['key', 'stadium']
+
+Red reveal: lab
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+  [     ]     [     ]      {SOUL}     {     }     {     }   
+   {MINE}     {     }     [GHOST]     (     )     [AZTEC]   
+ (OLYMPUS)    (FORCE)     [MOSCOW]    {     }    (DINOSAUR) 
+  [     ]      {BARK}     (     )     [     ]     (     )   
+  [     ]     <CRANE>      (HEAD)     (     )     (     )   
+
+Clue: lead 2
+
+Guesses: ['force', 'head']
+
+Red reveal: ghost
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+  [     ]     [     ]      {SOUL}     {     }     {     }   
+   {MINE}     {     }     [     ]     (     )     [AZTEC]   
+ (OLYMPUS)    (     )     [MOSCOW]    {     }    (DINOSAUR) 
+  [     ]      {BARK}     (     )     [     ]     (     )   
+  [     ]     <CRANE>     (     )     (     )     (     )   
+
+Clue: zues 1
+
+Guesses: ['soul']
+
+Red reveal: moscow
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+  [     ]     [     ]     {     }     {     }     {     }   
+   {MINE}     {     }     [     ]     (     )     [AZTEC]   
+ (OLYMPUS)    (     )     [     ]     {     }    (DINOSAUR) 
+  [     ]      {BARK}     (     )     [     ]     (     )   
+  [     ]     <CRANE>     (     )     (     )     (     )   
+
+Clue: smite 2
+
+Guesses: ['mine', 'aztec']
+
+Red reveal: aztec
+
+You lose! Red team revealed all their cards. Play again? (y/n)
 
