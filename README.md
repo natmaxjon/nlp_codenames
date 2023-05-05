@@ -5,7 +5,7 @@ Nathan Jones (2762057)
 
 ## Overview
 
-Xxx
+A simplified version of the game [Codenames](https://codenamesgame.com/) is implemented in Python using [spaCy](https://spacy.io/), [NLTK](https://www.nltk.org/) and [Pygame](https://www.pygame.org/docs/) to explore semantic reasoning tasks using two appraoches: word embeddings and WordNet taxonomies.
 
 ## Requirements
 
@@ -45,14 +45,21 @@ By default, the `wordnet` agent is used, but you can specify the model using the
 ```sh
 $ python3 main.py --model <model_choice>
 ```
+
 > Run `python3 main.py --help` for details. 
+
+To explore the model outputs in more detail run:
+
+```sh
+$ python3 dev.py
+```
 
 ## Key Source Files
 > **main.py**
 > Implements the game loop, rendering and user input functionality in [Pygame](https://www.pygame.org/docs/).
 
 > **codenames.py**
-> Implements the rule set and coordinates the primary game elements of Codenames.
+> Implements the rule set and coordinates the core game elements of Codenames.
 
 > **gameboard.py**
 > Contains the `Board` class used to manage the state of the game board.
@@ -70,13 +77,13 @@ $ python3 main.py --model <model_choice>
 
 The rules are a simplified version of the original Codenames rules found [here](https://czechgames.com/files/rules/codenames-rules-en.pdf). This game implements the two-player version of the game, where the player is always the spymaster and the computer agent is the field operative. Your goal is to reveal all the blue cards before all the red cards are revealed without ever revealing the grey card (the assassin). See the original [rules](https://czechgames.com/files/rules/codenames-rules-en.pdf) for more details.
 
-Each turn consists of two phases: the `Clue Phase` and the `Red Reveal Phase`.
+Each turn consists of two phases: the **Clue Phase** and the **Red Reveal Phase**.
 
 ### Clue Phase
 
 <img width="1312" alt="clue" src="https://user-images.githubusercontent.com/68292593/236468225-a0281672-1e0c-421b-98d7-f07d3437b3ca.png">
 
-During the Clue Phase, your goal is to provide a clue that groups together as many of the blue cards, while excluding the others. The clue must be entered as a single word, a space, and a number specifiying how many words the clue applies to. For example, in this case we may want to try and target `RULER`, `CHARGE` and `AZTEC` with the clue of 'king'. As seen in the next phase, the agent correctly identified `RULER` as its first guess, but calculated a higher similarity for `GRACE` for its second guess. As soon as a non-blue card is revealed, the phase ends regardless of the number you gave.
+During the Clue Phase, your goal is to provide a clue that groups together as many of the blue cards as possible, while excluding the others. The clue must be entered as a single word, a space, and a number specifiying how many words the clue applies to. For example, in this case we may want to try and target `RULER`, `CHARGE` and `AZTEC` with the clue of 'king'. As seen in the next phase, the agent correctly identified `RULER` as its first guess, but calculated a higher similarity for `GRACE` for its second guess. As soon as a non-blue card is revealed, the phase ends regardless of the number you gave.
 
 ### Red Reveal Phase
 
