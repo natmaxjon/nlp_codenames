@@ -247,3 +247,86 @@ Red reveal: aztec
 
 You lose! Red team revealed all their cards. Play again? (y/n)
 
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 13:23:27
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 13:25:16
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 13:29:19
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+ {PLATYPUS}   (EAGLE)     <TRUNK>      (BACK)      [GAME]   
+[MILLIONAIRE]   (CAP)      [SHARK]     (LEMON)      (WELL)   
+   {TIE}       [CAR]     {DIAMOND}    [RULER]     [FRANCE]  
+   (HORN)     {DRESS}     (HORSE)     {POLICE}    {GROUND}  
+  [CARROT]     [SLIP]      {EYE}       (SUB)      (BUGLE)   
+
+Clue: ride 2
+
+Guesses: ['horse', 'car']
+
+Red reveal: slip
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+ {PLATYPUS}   (EAGLE)     <TRUNK>      (BACK)      [GAME]   
+[MILLIONAIRE]   (CAP)      [SHARK]     (LEMON)      (WELL)   
+   {TIE}      [     ]    {DIAMOND}    [RULER]     [FRANCE]  
+   (HORN)     {DRESS}     (     )     {POLICE}    {GROUND}  
+  [CARROT]    [     ]      {EYE}       (SUB)      (BUGLE)   
+
+Clue: music 2
+
+Guesses: ['france', 'game']
+
+Red reveal: ruler
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+ {PLATYPUS}   (EAGLE)     <TRUNK>      (BACK)      [GAME]   
+[MILLIONAIRE]   (CAP)      [SHARK]     (LEMON)      (WELL)   
+   {TIE}      [     ]    {DIAMOND}    [     ]     [     ]   
+   (HORN)     {DRESS}     (     )     {POLICE}    {GROUND}  
+  [CARROT]    [     ]      {EYE}       (SUB)      (BUGLE)   
+
+Clue: instrument 2
+
+Guesses: ['ground', 'well']
+
+Red reveal: shark
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+ {PLATYPUS}   (EAGLE)     <TRUNK>      (BACK)      [GAME]   
+[MILLIONAIRE]   (CAP)      [     ]     (LEMON)      (WELL)   
+   {TIE}      [     ]    {DIAMOND}    [     ]     [     ]   
+   (HORN)     {DRESS}     (     )     {POLICE}    {     }   
+  [CARROT]    [     ]      {EYE}       (SUB)      (BUGLE)   
+
+Clue: music 2
+
+Guesses: ['game', 'horn']
+
+Red reveal: carrot
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+ {PLATYPUS}   (EAGLE)     <TRUNK>      (BACK)     [     ]   
+[MILLIONAIRE]   (CAP)      [     ]     (LEMON)      (WELL)   
+   {TIE}      [     ]    {DIAMOND}    [     ]     [     ]   
+   (HORN)     {DRESS}     (     )     {POLICE}    {     }   
+  [     ]     [     ]      {EYE}       (SUB)      (BUGLE)   
+
+Clue: music 1
+
+Guesses: ['horn']
+

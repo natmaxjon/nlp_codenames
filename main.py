@@ -61,6 +61,7 @@ args = parser.parse_args()
 
 # Initialize the pygame window and clock
 pygame.init()
+pygame.mixer.music.load("secret.ogg")
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Codenames")
 clock = pygame.time.Clock()
@@ -260,6 +261,9 @@ def handle_clue_phase(user_text):
     #  Apply the guesses to the board
     game.make_contact(guesses)
 
+    if clue == 'music':
+        pygame.mixer.music.play()
+
 
 def handle_red_reveal_phase(user_text):
     """
@@ -370,6 +374,7 @@ def main():
         # Draw the game elements
         draw_window(user_text)
 
+    pygame.mixer.music.stop()
     pygame.quit()
 
 
