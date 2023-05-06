@@ -40,13 +40,13 @@ To play the main game:
 $ python3 main.py
 ```
 
-By default, the `wordnet` agent is used, but you can specify the model using the additional command-line argument as follows:
+By default, the `embedding` agent is used, but you can specify the model using the additional command-line argument as follows:
 
 ```sh
 $ python3 main.py --model <model_choice>
 ```
 
-> Run `python3 main.py --help` for details. 
+> The other model option is `wordnet`. Run `python3 main.py --help` for details. 
 
 To explore the model outputs in more detail run:
 
