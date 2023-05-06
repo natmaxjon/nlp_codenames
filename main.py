@@ -53,7 +53,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     "-m",
     "--model",
-    default="wordnet",
+    default="embedding",
     choices=["embedding", "wordnet"],
     help="The model to use for the agent",
 )
