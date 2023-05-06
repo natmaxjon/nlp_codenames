@@ -330,3 +330,71 @@ Clue: music 1
 
 Guesses: ['horn']
 
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 15:12:08
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 15:12:50
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 15:13:10
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 15:13:18
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 15:13:40
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+   {HEAD}     <WHALE>    [PUMPKIN]    (TURKEY)    (RULER)   
+  (SPIKE)     [WATER]     {GRACE}      (TAP)    [HORSESHOE] 
+ {TRIANGLE}    {FOOT}      {GAME}      [JAM]       [PARK]   
+ [PHOENIX]    (SWING)     {CHANGE}    (CHARGE)     [KIWI]   
+   (BOW)      (COPPER)    (AZTEC)      [TIE]      {TRUNK}   
+
+Clue: king 3
+
+Guesses: ['ruler', 'grace', 'charge']
+
+Red reveal: water
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+   {HEAD}     <WHALE>    [PUMPKIN]    (TURKEY)    (     )   
+  (SPIKE)     [     ]     {     }      (TAP)    [HORSESHOE] 
+ {TRIANGLE}    {FOOT}      {GAME}      [JAM]       [PARK]   
+ [PHOENIX]    (SWING)     {CHANGE}    (CHARGE)     [KIWI]   
+   (BOW)      (COPPER)    (AZTEC)      [TIE]      {TRUNK}   
+
+Clue: king 2
+
+Guesses: ['charge', 'head']
+
+------------------------- NEW GAME -------------------------
+
+Model: wordnet
+Date: 05/05/2023 19:29:15
+
+BLUE = () ; RED = [] ; NEUTRAL = {} ; ASSASSIN = <>
+
+  [AGENT]     [FIELD]     {SCREEN}    (STOCK)      [PASS]   
+   {FISH}     [CIRCLE]    {CRANE}    [MAMMOTH]    (CYCLE)   
+   [FILM]     {MOSCOW}    (LASER)      {ROW}       (HOLE)   
+  {WHALE}      {TAP}      <CASINO>     [BANK]   [AUSTRALIA] 
+   (MAIL)      (DATE)     (NURSE)     (STAFF)    (MERCURY)  
+
+Clue: doctor 2
+
+Guesses: ['nurse', 'agent']
+

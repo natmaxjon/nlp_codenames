@@ -1,6 +1,6 @@
 from enum import Enum
 
-from gameboard import Board, CardType
+from gameboard import CardType
 
 Phase = Enum("Phase", ["CLUE", "RED_REVEAL"])
 
